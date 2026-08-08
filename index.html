@@ -150,5 +150,41 @@ async function updateHashes(){
 }
 document.getElementById('input').addEventListener('input',updateHashes);
 </script>
+
+<section id="seo-content">
+<style>
+#seo-content{max-width:660px;margin:40px auto 0;padding:0 20px 48px;font-family:'Segoe UI',system-ui,Arial,sans-serif;color:#94a3b8;line-height:1.7;font-size:15px}
+#seo-content h2{color:#f1f5f9;font-size:22px;margin:0 0 12px}
+#seo-content h3{color:#f1f5f9;font-size:18px;margin:28px 0 10px}
+#seo-content h4{color:#f1f5f9;font-size:15px;margin:18px 0 4px}
+#seo-content p{margin:0 0 12px}
+#seo-content .example{background:#1e293b;border:1px solid rgba(255,255,255,0.08);border-left:3px solid #4f46e5;border-radius:10px;padding:14px 16px;margin:12px 0;color:#cbd5e1;font-size:14px}
+#seo-content .example strong{color:#f1f5f9}
+#seo-content code{background:#0f172a;border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:1px 5px;font-size:13px;color:#c7d2fe}
+#seo-content .faq p{color:#94a3b8}
+</style>
+
+<h2>What is the Hash Generator?</h2>
+<p>The Hash Generator turns any text into a cryptographic hash such as MD5, SHA-1, SHA-256, or SHA-512. It computes the fingerprint instantly in your browser, so you can verify data integrity or generate checksums without sending anything to a server.</p>
+<h3>How it works</h3>
+<p>A hash function maps input of any length to a fixed-length digest using the SubtleCrypto Web API. The result is deterministic (same input → same hash) and one-way (you cannot reverse it). It also shows the avalanche effect: a tiny change to the input scrambles roughly half the output bits. SHA-256 produces a 256-bit (64 hex character) digest; SHA-512 produces 512 bits (128 hex characters).</p>
+<div class="example"><strong>Example 1:</strong> The SHA-256 hash of <code>hello</code> begins <code>2cf24dba5fb0a30e...</code> — a fixed 64-character hex string every time.</div>
+<div class="example"><strong>Example 2:</strong> Changing the input to <code>Hello</code> (capital H) produces a completely different hash, showing that even one character totally changes the output.</div>
+<h3>When to use it</h3>
+<p>Verify a downloaded file matches its published checksum. Compare two texts to confirm they are byte-for-byte identical. Generate a SHA-256 digest for a signature or integrity check. Or learn how hashing works by watching the output change with each keystroke.</p>
+<h3>FAQ</h3>
+<div class="faq">
+<h4>What is a hash and what is it used for?</h4>
+<p>A hash is a fixed-length fingerprint of your input. Identical input always yields the same hash, so hashes are used to verify file integrity and check for changes.</p>
+<h4>What is the difference between MD5, SHA-1, SHA-256, and SHA-512?</h4>
+<p>They differ in output size and security. MD5 (128-bit) and SHA-1 (160-bit) are considered broken for security; SHA-256 and SHA-512 are modern, stronger choices.</p>
+<h4>Can a hash be reversed?</h4>
+<p>No. Hashing is one-way by design; you cannot recover the original input from the hash. Attackers can only guess inputs and compare hashes.</p>
+<h4>Is this tool safe to use with sensitive data?</h4>
+<p>Yes. Hashes are computed in your browser and your input is not sent to a server, so nothing leaves your device.</p>
+<h4>Why do different inputs produce completely different hashes?</h4>
+<p>A good hash has the avalanche effect: changing even one character flips about half the output bits, producing a totally different result.</p>
+</div>
+</section>
 </body>
 </html>
