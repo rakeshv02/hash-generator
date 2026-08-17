@@ -129,6 +129,94 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
     <details class="faq-item"><summary>Why do two slightly different inputs produce completely different hashes?</summary><p>This is called the avalanche effect — a core property of good hash functions. Even a single character change produces a totally different hash, making it easy to detect any tampering with data.</p></details>
   </div>
 </div>
+
+<section id="seo-content">
+  <style>
+    #seo-content{max-width:760px;margin:2.5rem auto;padding:0 1.25rem 3rem;font-family:'Segoe UI',system-ui,Arial,sans-serif;color:#334155;line-height:1.7}
+    #seo-content h2{font-size:1.35rem;color:#0f172a;margin:2rem 0 .75rem}
+    #seo-content h3{font-size:1.05rem;color:#0f172a;margin:1.25rem 0 .5rem}
+    #seo-content p,#seo-content li{font-size:.95rem}
+    #seo-content ul{padding-left:1.4rem;margin:.5rem 0}
+    #seo-content .example{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;font-family:monospace;font-size:.85rem;word-break:break-all}
+    @media(prefers-color-scheme:dark){#seo-content{color:#cbd5e1}#seo-content h2,#seo-content h3{color:#f1f5f9}#seo-content .example{background:#1e293b;border-color:#334155}}
+  </style>
+  <h2>How to Use the Hash Generator</h2>
+  <p>The Hash Generator converts any text input into a fixed-length cryptographic hash using MD5, SHA-1, SHA-256, or SHA-512 algorithms. Type or paste your text into the input box and all four hash values update instantly, displayed side by side for easy copying. Everything runs entirely in your browser using the Web Crypto API — your text is never transmitted to any server, making this safe for hashing sensitive strings like passwords for testing, API keys for verification, or confidential text for integrity checking. The output hash is presented in lowercase hexadecimal format, which is the most common representation for hash values in software and security contexts.</p>
+  <p>A cryptographic hash function takes an input of any length and produces a fixed-length output (the hash or digest) that has three key properties. First, it is deterministic — the same input always produces the same hash. Second, it is one-way — it is computationally infeasible to reverse-engineer the original input from the hash alone. Third, it is collision-resistant — it is extremely unlikely that two different inputs will produce the same hash. These properties make hashes essential for data integrity verification, password storage, digital signatures, and file fingerprinting. Changing even a single character in the input completely changes the output hash — a property called the avalanche effect.</p>
+  <p>The four algorithms supported have different output lengths and security characteristics. MD5 produces a 128-bit (32 hex character) hash and is fast but cryptographically broken — collisions have been demonstrated, so it should not be used for security-critical purposes. SHA-1 produces a 160-bit (40 character) hash and is also considered weak for security applications since Google demonstrated a practical SHA-1 collision in 2017. SHA-256 produces a 256-bit (64 character) hash and is currently considered secure for most purposes. SHA-512 produces a 512-bit (128 character) hash and offers the highest resistance to brute-force attacks. For security-sensitive applications, use SHA-256 or SHA-512.</p>
+
+  <h2>Common Use Cases for Hash Generation</h2>
+  <ul>
+    <li><strong>File integrity verification:</strong> Generate a SHA-256 hash of a downloaded file and compare it to the publisher's checksum to confirm the file was not corrupted or tampered with.</li>
+    <li><strong>Password hashing:</strong> See the hash output for a test password to understand how hash-based password storage works (in production, always use bcrypt, Argon2, or PBKDF2 — not raw SHA).</li>
+    <li><strong>API key testing:</strong> Hash an API key or secret to verify your HMAC implementation matches expected output.</li>
+    <li><strong>Data deduplication:</strong> Hash records or files to quickly identify duplicates without comparing content character by character.</li>
+    <li><strong>Digital forensics:</strong> Generate MD5 or SHA-1 hashes of evidence files to prove they have not been altered since collection.</li>
+    <li><strong>Learning cryptography:</strong> Experiment with inputs to understand the avalanche effect and the fixed output length of hash functions.</li>
+  </ul>
+
+  <div class="example">Input: "hello"<br>MD5: 5d41402abc4b2a76b9719d911017c592<br>SHA-1: aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d<br>SHA-256: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</div>
+
+  <h2>Frequently Asked Questions</h2>
+  <h3>What is a hash function?</h3>
+  <p>A hash function takes input data of any size and produces a fixed-size output (the hash). Good cryptographic hash functions are deterministic, one-way (you cannot reverse the hash to find the input), and collision-resistant (two different inputs are extremely unlikely to produce the same hash). They are fundamental building blocks of modern security systems.</p>
+  <h3>Is it safe to hash passwords using this tool?</h3>
+  <p>This tool is safe for learning and testing — nothing you enter is sent to a server. However, do not use MD5, SHA-1, SHA-256, or SHA-512 directly to hash passwords in production systems. These algorithms are too fast, making brute-force and rainbow-table attacks feasible. Production password hashing should use purpose-built slow algorithms: bcrypt, scrypt, Argon2, or PBKDF2 with a high iteration count and a unique salt per user.</p>
+  <h3>What is the difference between MD5 and SHA-256?</h3>
+  <p>MD5 produces a 128-bit (32 hex character) hash and is cryptographically broken — collisions have been demonstrated. SHA-256 produces a 256-bit (64 character) hash and is currently considered secure. Use SHA-256 or SHA-512 for any security-sensitive application; use MD5 only for non-security purposes like checksums where speed is the priority and collision attacks are not a concern.</p>
+  <h3>Can I reverse a hash to get the original text?</h3>
+  <p>In theory, no — cryptographic hash functions are designed to be one-way. In practice, short or common inputs (like simple passwords or dictionary words) can sometimes be found via rainbow tables — precomputed databases of hash/input pairs. This is why adding a unique random salt to each password before hashing is essential in security applications.</p>
+  <h3>What does the avalanche effect mean?</h3>
+  <p>The avalanche effect is a property of good hash functions: changing even a single bit of the input produces a completely different output hash. For example, "Hello" and "hello" (differing only by capitalisation) produce entirely different SHA-256 hashes with no obvious relationship. This sensitivity makes hashes useful for detecting even tiny changes in data.</p>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a hash function?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A hash function takes input of any size and produces a fixed-size output. Good cryptographic hash functions are deterministic, one-way, and collision-resistant — fundamental to modern security."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to hash passwords using this tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Safe for learning — nothing is sent to a server. But never use MD5 or SHA algorithms directly for production password hashing. Use bcrypt, scrypt, Argon2, or PBKDF2 with a unique salt instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between MD5 and SHA-256?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MD5 produces a 128-bit hash and is cryptographically broken. SHA-256 produces a 256-bit hash and is currently considered secure. Use SHA-256 or SHA-512 for security-sensitive applications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reverse a hash to get the original text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cryptographic hash functions are designed to be one-way. However, common inputs can sometimes be found via rainbow tables. Always use a unique random salt when hashing passwords to prevent this."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the avalanche effect mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The avalanche effect means changing even a single character in the input produces a completely different hash output. This makes hashes useful for detecting even tiny changes in data."
+      }
+    }
+  ]
+}
+</script>
 <footer>© 2024 Tabutility · 100% client-side · <a href="https://tabutility.com" style="color:#6366f1">All Tools</a></footer>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a hash and what is it used for?","acceptedAnswer":{"@type":"Answer","text":"Hashes are used for file integrity verification, password storage, digital signatures, and data deduplication."}},{"@type":"Question","name":"What is the difference between MD5, SHA-1, SHA-256, and SHA-512?","acceptedAnswer":{"@type":"Answer","text":"MD5 and SHA-1 are legacy/broken. SHA-256 and SHA-512 are the current standards for security-sensitive applications."}},{"@type":"Question","name":"Can a hash be reversed?","acceptedAnswer":{"@type":"Answer","text":"No — hashes are one-way functions. You cannot reverse a hash to get the original input."}},{"@type":"Question","name":"Is this tool safe to use with sensitive data?","acceptedAnswer":{"@type":"Answer","text":"Yes — hashing happens entirely in your browser using the Web Crypto API. Nothing is sent to any server."}},{"@type":"Question","name":"Why do different inputs produce completely different hashes?","acceptedAnswer":{"@type":"Answer","text":"This is the avalanche effect — even a single character change produces a completely different hash."}}]}</script>
 <script>
